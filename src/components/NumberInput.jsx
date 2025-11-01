@@ -5,7 +5,7 @@ const NumberInput = () => {
   const [name, setName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   return (
-    <Box>
+    <Box display="flex" flexDirection={"column"} alignItems={"center"} gap={2}>
       <TextField
         id="name"
         label="name"
