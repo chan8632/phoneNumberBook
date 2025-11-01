@@ -1,13 +1,15 @@
 import { Box, Button } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import { useState } from "react";
-import phoneBookStore from "./../stores/phoneBookStores";
+import usephoneBookStore from "../stores/usephoneBookStores";
 const NumberInput = () => {
   const [name, setName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
-  const { addInfo } = phoneBookStore();
-  const addNameAndNumber = (name, phoneNumber) => {
-    addInfo(name, phoneNumber);
+  const { addContact } = usephoneBookStore();
+  const handleAddContact = (name, phoneNumber, event) => {
+    event.stopPropagation();
+    if (!name.trim() || !phoneNumber.trim()) return;
+    addContact(name, phoneNumber);
   };
 
   return (
@@ -28,7 +30,7 @@ const NumberInput = () => {
       />
       <Button
         variant="contained"
-        onClick={() => addNameAndNumber(name, phoneNumber)}
+        onClick={(event) => handleAddContact(name, phoneNumber, event)}
       >
         추가
       </Button>
