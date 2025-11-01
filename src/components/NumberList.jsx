@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import usephoneBookStore from "../stores/usephoneBookStores";
 import useSearchStore from "./../stores/useSearchStore";
-
+import { Grid } from "@mui/material";
+import Card from "@mui/material/Card";
 const NumberList = () => {
   const { phoneBook } = usephoneBookStore();
   const { searchData } = useSearchStore();
@@ -19,16 +20,18 @@ const NumberList = () => {
   }, [searchData, phoneBook]);
 
   return (
-    <div>
+    <Grid container spacing={2}>
       {matchingData.map((info) => {
         return (
-          <div key={info.id}>
-            <p>{info.name}</p>
-            <p>{info.phoneNumber}</p>
-          </div>
+          <Grid size={{ xs: 6, md: 4 }} key={info.id}>
+            <Card variant="outlined" display='flex' alignItems={"center"}>
+              <p>{info.name}</p>
+              <p>{info.phoneNumber}</p>
+            </Card>
+          </Grid>
         );
       })}
-    </div>
+    </Grid>
   );
 };
 export default NumberList;
