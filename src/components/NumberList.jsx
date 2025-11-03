@@ -3,6 +3,8 @@ import usephoneBookStore from "../stores/usephoneBookStores";
 import useSearchStore from "./../stores/useSearchStore";
 import { Grid } from "@mui/material";
 import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import Typography from "@mui/material/Typography";
 const NumberList = () => {
   const { phoneBook } = usephoneBookStore();
   const { searchData } = useSearchStore();
@@ -20,13 +22,17 @@ const NumberList = () => {
   }, [searchData, phoneBook]);
 
   return (
-    <Grid container spacing={2}>
+    <Grid container spacing={5} >
       {matchingData.map((info) => {
         return (
           <Grid size={{ xs: 6, md: 4 }} key={info.id}>
-            <Card variant="outlined" display='flex' alignItems={"center"}>
-              <p>{info.name}</p>
-              <p>{info.phoneNumber}</p>
+            <Card variant="outlined" display="flex" alignItems={"center"}>
+              <CardContent>
+                <Typography variant="h5" component="div">
+                  {info.name}
+                </Typography>
+                <Typography variant="body2">{info.phoneNumber}</Typography>
+              </CardContent>
             </Card>
           </Grid>
         );
